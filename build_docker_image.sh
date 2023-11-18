@@ -1,0 +1,1 @@
+docker build -t ubuntu22.04-devel-cuda12.1-cudnn8:latest .

@@ -1,0 +1,49 @@
+version: "3"
+services:
+  ubuntu-devel-container:
+    container_name: ubuntu22.04-devel-cuda12.1-cudnn8
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    network_mode: br0
+
+    # networks:
+    #   - default
+    # devel-container-network:
+    #   ipv4_address: 192.168.0.253
+
+    # ports:
+    #   - "8888:8888"
+    #   - "6006:6006"
+
+    entrypoint: ["/bin/bash"]
+
+    privileged: true
+
+    environment:
+      TZ: Asia/Calcutta
+      HOST_OS: Unraid
+      HOST_HOSTNAME: SERVER
+      HOST_CONTAINERNAME: ubuntu22.04-devel-cuda12.1-cudnn8
+
+    labels:
+      - net.unraid.docker.managed=dockerman
+      - net.unraid.docker.icon=https://brandslogos.com/wp-content/uploads/images/large/ubuntu-logo.png
+
+    volumes:
+      - "/mnt/nvme/coding/:/mnt/nvme:rw"
+      - "/mnt/user/coding_archive/:/mnt/hdd:rw"
+      # - "/mnt/nvme/coding/devel-container-script.sh:/devel-container-script.sh:rw"
+
+    hostname: devel-container
+
+networks:
+  devel-container-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+        - gateway: 192.168.0.1
