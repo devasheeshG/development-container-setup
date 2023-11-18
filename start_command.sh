@@ -15,4 +15,4 @@ docker run -it --rm \
     -v '/mnt/nvme/coding/':'/mnt/nvme':'rw' \
     -v '/mnt/user/coding_archive/':'/mnt/hdd':'rw' \
     --hostname devel-container 'ubuntu22.04-devel-cuda12.1-cudnn8:latest' \
-    -c "code tunnel --accept-server-license-terms"
+    -c "code tunnel --accept-server-license-terms && service ssh start"
