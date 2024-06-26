@@ -25,3 +25,7 @@ lolcat
 neofetch
 apt-utils
 sudo
+bash-completion
+build-essential
+pkg-config
+libcairo2-dev
